@@ -82,7 +82,7 @@ function WorkflowStep({ label, icon, isActive = false, isLineActive = false, isL
       {!isLast && (
         <div className={`relative overflow-hidden ${compact ? 'w-4 md:w-8 mx-1 md:mx-3 -translate-y-4 md:-translate-y-5' : 'w-8 md:w-16 mx-2 md:mx-4 -translate-y-4'} h-px transition-colors duration-500 ${isLineActive ? 'bg-orange-500/30' : 'bg-zinc-800'}`}>
           {isLineActive && (
-            <div className="absolute top-0 left-0 h-full bg-orange-400 shadow-[0_0_8px_rgba(255,92,0,0.8)] animate-[scan_1s_ease-in-out_infinite]" style={{ width: '50%' }}></div>
+            <div className="absolute top-0 left-0 h-full bg-orange-400 shadow-[0_0_8px_rgba(255,92,0,0.8)] animate-[dataFlow_1.5s_linear_infinite]" style={{ width: '50%' }}></div>
           )}
         </div>
       )}

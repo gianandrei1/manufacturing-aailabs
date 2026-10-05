@@ -22,6 +22,10 @@ export default {
         scan: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(300px)' }, // Approximate height of the container
+        },
+        dataFlow: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(200%)' },
         }
       },
       fontFamily: {
