@@ -8,14 +8,14 @@ function FadeInSection({ children, delay = 0 }) {
     const observer = new IntersectionObserver(([entry]) => {
       setIsVisible(entry.isIntersecting);
     }, { threshold: 0.15 });
-    
+
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       className={`transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
@@ -39,7 +39,7 @@ function AnimatedCounter({ value, duration = 2000 }) {
 
   useEffect(() => {
     if (!isVisible) return;
-    
+
     let startTime = null;
     let animationFrame = null;
     const animate = (timestamp) => {
@@ -60,17 +60,17 @@ function AnimatedCounter({ value, duration = 2000 }) {
 
 function WorkflowStep({ label, icon, isActive = false, isLineActive = false, isLast = false, compact = false, activeColor = "orange" }) {
   const colorStyles = {
-    orange: 'bg-orange-500/20 border-orange-500/50 text-orange-400 shadow-[0_0_15px_rgba(255,92,0,0.2)]',
-    emerald: 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]',
-    rose: 'bg-rose-500/20 border-rose-500/50 text-rose-400 shadow-[0_0_15px_rgba(244,63,94,0.2)]',
+    orange: 'bg-orange-500/20 text-orange-400 shadow-[0_0_15px_rgba(255,92,0,0.2)]',
+    emerald: 'bg-emerald-500/20 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]',
+    rose: 'bg-rose-500/20 text-rose-400 shadow-[0_0_15px_rgba(244,63,94,0.2)]',
   };
-  
+
   const activeStyle = colorStyles[activeColor] || colorStyles.orange;
 
   return (
     <div className="flex items-center">
       <div className={`flex flex-col items-center gap-2 md:gap-3`}>
-        <div className={`${compact ? 'w-10 h-10 md:w-12 md:h-12' : 'w-10 h-10 md:w-14 md:h-14'} rounded-xl flex items-center justify-center border transition-all duration-500 ${isActive ? `${activeStyle} scale-110` : 'bg-zinc-900/50 border-zinc-800 text-zinc-500 scale-100'}`}>
+        <div className={`${compact ? 'w-10 h-10 md:w-12 md:h-12' : 'w-10 h-10 md:w-14 md:h-14'} rounded-xl flex items-center justify-center transition-all duration-500 ${isActive ? `${activeStyle} scale-110` : 'bg-transparent text-zinc-500 scale-100'}`}>
           <div className={`${compact ? 'w-5 h-5 md:w-6 md:h-6' : 'w-5 h-5 md:w-6 md:h-6'} flex items-center justify-center`}>
             {icon}
           </div>
@@ -103,7 +103,7 @@ function AnimatedWorkflow({ steps, compact = false }) {
   return (
     <div className="flex items-center justify-center w-full">
       {steps.map((step, idx) => (
-        <WorkflowStep 
+        <WorkflowStep
           key={idx}
           label={step.label}
           icon={step.icon}
@@ -140,22 +140,22 @@ export default function AgentsSection() {
       </FadeInSection>
 
       <div className="flex flex-col gap-8">
-        
+
         {/* Featured Agent: Man-Order-Intake */}
         <FadeInSection delay={100}>
           <div className="group relative rounded-3xl border border-zinc-800/80 bg-[#0a0a0c] overflow-hidden hover:border-zinc-700 transition-colors shadow-2xl">
             {/* Subtle gradient hover effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 via-transparent to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 p-8 md:p-12 lg:p-16 relative z-10">
-              
+
               {/* Left Content */}
               <div className="lg:col-span-5 flex flex-col justify-center">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-6">Man-Order-Intake Agent</h3>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-6">Order Intake Agent</h3>
                 <p className="text-zinc-400 text-base md:text-lg leading-relaxed mb-10">
                   Automatically processes incoming orders from email and transfers the relevant order information into the ERP system.
                 </p>
-                
+
                 {/* Metrics */}
                 <div className="grid grid-cols-3 gap-6 pt-8 border-t border-zinc-800/80">
                   <div>
@@ -174,14 +174,16 @@ export default function AgentsSection() {
               </div>
 
               {/* Right Visual Workflow */}
-              <div className="lg:col-span-7 bg-[#050507] rounded-2xl border border-zinc-800/50 p-8 md:p-12 flex flex-col justify-center min-h-[300px] relative overflow-hidden group-hover:border-zinc-700/50 transition-colors">
-                <div className="flex items-center justify-center w-full h-full pt-6 overflow-hidden pb-4">
-                  <AnimatedWorkflow compact={true} steps={[
-                    { label: "Incoming Email", icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> },
-                    { label: "AI Agent", icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> },
-                    { label: "ERP System", icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg> },
-                    { label: "Processed Order", activeColor: "emerald", icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> }
-                  ]} />
+              <div className="lg:col-span-7 bg-transparent p-2 md:p-4 flex flex-col justify-center min-h-[300px] relative transition-colors">
+                <div className="flex items-center justify-start md:justify-center w-full h-full pt-6 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  <div className="flex min-w-max px-4">
+                    <AnimatedWorkflow compact={true} steps={[
+                      { label: "Incoming Email", icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> },
+                      { label: "AI Agent", icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> },
+                      { label: "ERP System", icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg> },
+                      { label: "Processed Order", activeColor: "emerald", icon: <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> }
+                    ]} />
+                  </div>
                 </div>
               </div>
 
@@ -191,15 +193,15 @@ export default function AgentsSection() {
 
         {/* Supporting Agents Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
+
           {/* Supporting Agent: Freor */}
           <FadeInSection delay={200}>
             <div className="group relative rounded-3xl border border-zinc-800/80 bg-[#0a0a0c] p-8 md:p-10 hover:border-zinc-700 transition-colors h-full flex flex-col shadow-xl">
-              <h3 className="text-2xl md:text-3xl font-light text-white mb-4">Freor Agent</h3>
+              <h3 className="text-2xl md:text-3xl font-light text-white mb-4">Order Error Detection Agent</h3>
               <p className="text-zinc-400 text-base leading-relaxed mb-10 min-h-[48px]">
                 Automatically checks the provided SharePoint data and identifies errors before they move further into the manufacturing workflow.
               </p>
-              
+
               <div className="mt-auto flex items-center justify-center py-4 transition-colors">
                 <AnimatedWorkflow compact={true} steps={[
                   { label: "SharePoint", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg> },
@@ -214,11 +216,11 @@ export default function AgentsSection() {
           {/* Supporting Agent: Elinta */}
           <FadeInSection delay={300}>
             <div className="group relative rounded-3xl border border-zinc-800/80 bg-[#0a0a0c] p-8 md:p-10 hover:border-zinc-700 transition-colors h-full flex flex-col shadow-xl">
-              <h3 className="text-2xl md:text-3xl font-light text-white mb-4">ElintaAgent</h3>
+              <h3 className="text-2xl md:text-3xl font-light text-white mb-4">Subcontractor Orders Management Agent</h3>
               <p className="text-zinc-400 text-base leading-relaxed mb-10 min-h-[48px]">
                 Automates order management using information stored in Excel files.
               </p>
-              
+
               <div className="mt-auto flex items-center justify-center py-4 transition-colors">
                 <AnimatedWorkflow compact={true} steps={[
                   { label: "Excel", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg> },

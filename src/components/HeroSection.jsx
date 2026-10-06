@@ -2,14 +2,14 @@ export default function HeroSection() {
   return (
     <section className="relative pt-16 pb-24 md:pt-28 md:pb-36 border-b border-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column Content */}
-          <div className="lg:col-span-6 space-y-8">
+          <div className="md:col-span-6 space-y-6 md:space-y-8">
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.05] text-white">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light tracking-tight leading-[1.1] text-white">
               AI-powered engineering for manufacturing
             </h1>
-            <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed max-w-2xl">
+            <p className="text-sm md:text-base lg:text-lg text-white/70 font-light leading-relaxed max-w-2xl">
               AAI Labs develops AI solutions that automate engineering workflows, analyze technical drawings and CAD data, improve quoting, and reduce repetitive manufacturing work.
             </p>
             <div className="pt-2 flex flex-wrap items-center gap-4">
@@ -22,13 +22,13 @@ export default function HeroSection() {
             </div>
           </div>
           {/* Right Column CAD Schematic Graphic */}
-          <div className="lg:col-span-6 relative">
+          <div className="md:col-span-6 relative mt-8 md:mt-0">
             <div className="relative rounded-2xl border border-zinc-800 bg-[#0d0d0f] p-6 md:p-8 shadow-2xl overflow-hidden group transform hover:scale-[1.02] transition-transform duration-500">
               {/* Glow accent behind drawing preview */}
               <div className="absolute -top-32 -right-32 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
               {/* Blueprint UI Card Header */}
-              <div className="border border-zinc-800/80 rounded-lg bg-black/90 p-4 mb-4 flex items-center justify-between text-xs font-mono text-zinc-400">
+              <div className="border border-zinc-800/80 rounded-lg bg-black/90 p-3 md:p-4 mb-4 flex items-center justify-between text-[10px] lg:text-xs font-mono text-zinc-400">
                 <span className="text-orange-400">PROJECT: AI_POWERED_ENGINEERING</span>
 
               </div>
@@ -67,7 +67,7 @@ export default function HeroSection() {
                   {/* Bounding identification tags removed */}
                 </svg>
                 {/* Badges underneath drawing */}
-                <div className="flex items-center justify-between pt-2 border-t border-zinc-800 text-[10px] font-mono">
+                <div className="flex flex-wrap gap-2 items-center justify-between pt-2 border-t border-zinc-800 text-[8px] lg:text-[10px] font-mono">
                   <div className="px-2 py-0.5 rounded  text-orange-400 border border-orange-500/20">DRAWING ANALYSIS</div>
                   <div className="px-2 py-0.5 rounded  text-[#ff7324] border border-cyan-500/20">EXTRACTION: 99.8%</div>
                 </div>
